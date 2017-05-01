@@ -45,3 +45,22 @@ class Harddisks(Base):
     def __repr__(self):
         return 'Harddisk(name=%s, available=%s, cost=%s, warranty=%s, image-url=%s)' % (self.name, self.available,
                                                                                        self.cost, self.warranty, self.img_url)
+
+# model for handphone
+class Headphone(Base):
+    __tablename__ = 'headphone'
+
+    hpid = Column(BigInteger, primary_key=True)
+    name = Column(String, nullable=True)
+    available = Column(Boolean, default=False)
+    cost = Column(Integer)
+    warranty = Column(Integer, nullable=True)
+    img_url = Column(String)
+
+    def code(self):
+        return 'HDF'
+
+    def __repr__(self):
+        return 'HeadPhone(name=%s, available=%s, cost=%s, warranty=%s, image-url=%s)' % (self.name, self.available,
+                                                               self.cost, self.warranty, self.img_url)
+

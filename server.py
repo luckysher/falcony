@@ -7,19 +7,34 @@ import falcon
 from wsgiref import simple_server
 from utils import getLogger
 
+from middleware.jsonTranslator import JSONTranslator
 # import products
-from resources.productsResource import ProductResource
+#from resources.harddisksResource import ProductResource
+from resources.baseResource import BaseResource
+from resources.usersResource import UsersResource
+from resources.baseResource import handle_404
+
+
 
 logger = getLogger()
 
 # falcon app with middleware
-app = falcon.API()
+app = falcon.API(middleware=[JSONTranslator()])
 
-products = ProductResource()
+#products = ProductResource()
+home = BaseResource()
+login = UsersResource()
+logout = UsersResource()
 
 # add app routes
 # route for all products
-app.add_route('/{name}/products', products)
+#app.add_route('/{name}/products', products)
+app.add_route('/home', home)
+app.add_route('/login', login)
+app.add_route('/logout', logout)
+
+# handler for not found resources
+app.add_sink(handle_404, '')
 
 # add error handlers
 

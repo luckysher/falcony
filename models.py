@@ -28,3 +28,20 @@ class Users(Base):
         return 'User(name=%s, is_admin=%s)' % (self.full_name(), self.is_admin)
 
 
+# model for harddisk
+class Harddisks(Base):
+    __tablename__ = 'harddisks'
+
+    hid = Column(BigInteger, primary_key=True)
+    name = Column(String)
+    available = Column(Boolean, default=False)
+    cost = Column(Integer)
+    warranty = Column(Integer, nullable=True)
+    img_url = Column(String)
+
+    def code(self):
+        return 'HDD'
+
+    def __repr__(self):
+        return 'Harddisk(name=%s, available=%s, cost=%s, warranty=%s, image-url=%s)' % (self.name, self.available,
+                                                                                       self.cost, self.warranty, self.img_url)

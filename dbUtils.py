@@ -29,3 +29,26 @@ def getEngine(dbUrl):
 def getSession(engine):
     Session = sessionmaker(bind=engine)
     return Session()
+
+# fun for creating user
+def createUser(session, firstName, lastName, username, password):
+    user = User(first_name=firstName, last_name=lastName)
+    # set user name
+    user.set_username(username)
+    # set user password
+    user.set_password(password)
+    try:
+        session.add(user)
+        session.commit()
+        print('user created successfully...')
+    except Exception as e:
+        print ("Got exception while creating user")
+        print(e)
+        session.rollback()
+        traceback.print_exc()
+
+
+if __name__ == '__main__':
+    engine = getEngine(db_url)
+    session = getSession(engine)
+    createUser(session, 'John', 'drew', 'john123', '12345678')

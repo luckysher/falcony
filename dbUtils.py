@@ -19,3 +19,13 @@ def isUserAuthenticated(session, username, password):
         print('Got exception while getting user..')
         print(e)
     return token
+
+# function for returning engine
+def getEngine(dbUrl):
+    engine = create_engine(db_url)
+    return engine
+
+# function for getting session
+def getSession(engine):
+    Session = sessionmaker(bind=engine)
+    return Session()

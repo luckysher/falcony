@@ -7,12 +7,13 @@ Base = declarative_base()
 
 
 # model for users
-class Users(Base):
-    __tablename__ = 'Users'
+class User(Base):
+    __tablename__ = 'User'
 
     user_id = Column(BigInteger, primary_key=True)
     first_name = Column(String)
     last_name = Column(String)
+    username = Column(String, nullable=False, unique=True)
     password = Column(String)
 
     is_admin = Column(Boolean, default=False)
@@ -23,6 +24,15 @@ class Users(Base):
 
     def set_password(self, password):
         self.password = strToToken(password)
+
+    def get_password(self):
+        return self.password
+
+    def get_username(self):
+        return self.username
+
+    def set_username(self, username):
+        self.username = username
 
     def __repr__(self):
         return 'User(name=%s, is_admin=%s)' % (self.full_name(), self.is_admin)

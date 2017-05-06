@@ -4,13 +4,14 @@
 ####################################################
 
 from utils import getLogger
+from baseResource import BaseResource
 import json
 import falcon
 
 
-class ProductResource(object):
+class HardDisksResource(BaseResource):
     """
-    Class for dealing with all products
+    Class for dealing with all hardDisks
     """
     def __init__(self):
         self.logger = getLogger()

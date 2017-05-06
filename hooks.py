@@ -2,6 +2,6 @@
 from error import UnAuthorizedUser
 
 
-def auth_required(req, res, resource):
-    if req.context['auth_user'] is None:
+def auth_required(req, res, resource, param):
+    if req.get_header('Authorization') is None:
         raise UnAuthorizedUser()

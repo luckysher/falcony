@@ -21,12 +21,13 @@ class JSONTranslator(object):
                 raw_json = req.stream.read()
             except Exception as e:
                 raise falcon('bad request', e)
-
             try:
                 req.context['data'] = raw_json
             except ValueError:
                 raise InvalidError('json decoding error or malformed json ')
 
+        if req.get_header('Authorization'):
+            req.context['auth_user'] = req.get_header('Authorization')
 
     def process_response(self, req, resp, resource):
         if 'data' not in req.context:

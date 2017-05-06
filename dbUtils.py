@@ -47,6 +47,23 @@ def createUser(session, firstName, lastName, username, password):
         session.rollback()
         traceback.print_exc()
 
+def getProductDetails(productsList):
+    productsInfo = {}
+    if productsList.__len__():
+        for products in productsList:
+            # get products details
+            if products:
+                productCount = 0
+                manufacturers = []
+                for product in products:
+                    productCount += product.quantity
+                    manufacturers.append(product.manufacturer)
+                    product_name = product.__class__.__name__
+
+                productsDetails = {'name': product_name, 'quantity': productCount, 'manufacturers': manufacturers}
+                productsInfo[product_name] = productsDetails
+
+    return productsInfo
 
 if __name__ == '__main__':
     engine = getEngine(db_url)

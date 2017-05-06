@@ -67,7 +67,6 @@ class BaseResource(object):
     def on_delete(self, req, res):
         raise NotSupportedError(method='DELETE', url=req.path)
 
-
 def handle_404(req, resp):
     resp.status = falcon.HTTP_404
     avail_urls = OrderedDict()

@@ -46,6 +46,8 @@ class Harddisks(Base):
     name = Column(String)
     available = Column(Boolean, default=False)
     cost = Column(Integer)
+    manufacturer = Column(String)
+    quantity = Column(Integer)
     warranty = Column(Integer, nullable=True)
     img_url = Column(String)
 
@@ -64,6 +66,8 @@ class Headphone(Base):
     name = Column(String, nullable=True)
     available = Column(Boolean, default=False)
     cost = Column(Integer)
+    manufacturer = Column(String)
+    quantity = Column(Integer)
     warranty = Column(Integer, nullable=True)
     img_url = Column(String)
 

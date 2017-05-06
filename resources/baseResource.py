@@ -9,7 +9,6 @@ import falcon
 from error import NotSupportedError
 
 
-
 falcony_home = {
         'appname': 'Falcony',
         'message': 'Welcome to falcony rest-api'
@@ -24,7 +23,7 @@ class BaseResource(object):
         return json.dumps(data)
 
     def set_cors_headers(self, res):
-        res.set_header('Access-Control-Allow-Origin', '*')
+        res.set_header('Access-Control-Allow-Origin', '*');
 
     def on_success(self, res, data):
         res.status = falcon.HTTP_200
@@ -52,7 +51,6 @@ class BaseResource(object):
         resObj['meta'] = meta
         res.body = self.to_json(resObj)
 
-
     def on_get(self, req, res):
         if req.path == '/':
             res.status = falcon.HTTP_200
@@ -74,9 +72,8 @@ def handle_404(req, resp):
     resp.status = falcon.HTTP_404
     avail_urls = OrderedDict()
     avail_urls['1.'] = '/login'
-    avail_urls['2.'] = '/logout'
-    avail_urls['3.'] = '/home'
-    avail_urls['4'] = 'harddisks'
+    avail_urls['2.'] = '/products'
+    avail_urls['3.'] = 'harddisks'
 
     message = {
         'error': 'not found: Path=' + req.path,

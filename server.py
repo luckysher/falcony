@@ -9,29 +9,25 @@ from utils import getLogger
 
 from middleware.jsonTranslator import JSONTranslator
 # import products
-#from resources.harddisksResource import ProductResource
+from resources.productResource import ProductsResource
 from resources.baseResource import BaseResource
 from resources.usersResource import UsersResource
 from resources.baseResource import handle_404
-
 
 
 logger = getLogger()
 
 # falcon app with middleware
 app = falcon.API(middleware=[JSONTranslator()])
-
-#products = ProductResource()
-home = BaseResource()
 login = UsersResource()
-logout = UsersResource()
+home = BaseResource()
+products = ProductsResource()
 
 # add app routes
 # route for all products
-#app.add_route('/{name}/products', products)
 app.add_route('/home', home)
 app.add_route('/login', login)
-app.add_route('/logout', logout)
+app.add_route('/products', products)
 
 # handler for not found resources
 app.add_sink(handle_404, '')
